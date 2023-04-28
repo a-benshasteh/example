@@ -1,0 +1,59 @@
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" >
+    
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+    
+    <button mat-icon-button disabled></button>
+    <table >
+        <tr>
+            <td style="border: 1px solid black;">{{node.name}}</td>
+            <td style="border: 1px solid black;">{{ node.parent}}</td>
+        </tr>
+    </table>
+    </mat-tree-node>
+    
+    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+    <button mat-icon-button matTreeNodeToggle
+    [attr.aria-label]="'toggle ' + node.name">
+    <mat-icon class="mat-icon-rtl-mirror">
+    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+    </mat-icon>
+    </button>
+    <table>
+        <tr>
+            <td>{{node.name}}</td>
+            <td style="border: 1px solid black;">{{ node.parent}}</td>
+
+        </tr>
+    </table>
+    
+    </mat-tree-node>
+    </mat-tree>
+
+    <!-- <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef style="width:50%"> 
+            <span [style.paddingLeft.px]="40"> Name </span>
+          </th>
+          <td mat-cell *matCellDef="let data" style="width:50%"> 
+            <button mat-icon-button 
+                    [style.visibility]="!data.expandable ? 'hidden' : ''"
+                    [style.marginLeft.px]="data.level * 50"
+                    (click)="treeControl.toggle(data)">
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{treeControl.isExpanded(data) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button>
+      
+            {{data.name}}
+          </td>
+        </ng-container> 
+      
+        <ng-container matColumnDef="count">
+          <th mat-header-cell *matHeaderCellDef style="width:25%"> Count </th>
+          <td mat-cell *matCellDef="let data" style="width:25%"> {{data.TPN}} </td>
+        </ng-container> 
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </mat-table> -->
+      
